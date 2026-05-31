@@ -15,3 +15,32 @@
 - ASP.NET Core MVC
 - SQL Database
 - Authentication System
+  
+CODE(Employee Model)
+public class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Department { get; set; }
+    public decimal Salary { get; set; }
+}
+CODE(API Controller)
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    private static List<Employee> employees = new();
+
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok(employees);
+    }
+
+    [HttpPost]
+    public IActionResult Add(Employee employee)
+    {
+        employees.Add(employee);
+        return Ok(employee);
+    }
+}
